@@ -10,13 +10,13 @@
 <body>
   <div class="scene">
     <div class="layers" id="layers">
-      <div id="startCircle">✧</div>
+      <img id="startCircle" src="./Introduction/img/eye.png" alt="Start Eye" />
       <div id="introOverlay"></div>
 
       <!--<div id="title">How deep does your debt go?<br><span style="font-size: 1rem; opacity: 0.6;">Scroll to descend</span></div> -->
       <!-- Replace circles with surreal objects -->
 <!-- Add this multiple times, each with deeper translateZ -->
-<div class="object-wrapper" style="transform: translate3d(-300px, -300px, 0px);">
+<div class="object-wrapper whisper-hover" data-sound="scrollWhisper" style="transform: translate3d(-300px, -300px, 0px);">
   <div class="centered-image spin-fast" style="
     background-image: url('./Introduction/img/purpleframe.png');
     width: 300px;
@@ -24,7 +24,7 @@
   "></div>
 </div>
 
-<div class="object-wrapper" style="transform: translate3d(500px, 300px, -2px);">
+<div class="object-wrapper whisper-hover" data-sound="dontBeScared" style="transform: translate3d(500px, 300px, -2px);">
   <div class="centered-image spin-fast" style="
     background-image: url('./Introduction/img/chair.png');
     width: 400px;
@@ -32,7 +32,7 @@
   "></div>
 </div>
 
-<div class="object-wrapper" style="transform: translate3d(350px, -320px, 0px);">
+<div class="object-wrapper whisper-hover" data-sound="scrollWhisper" style="transform: translate3d(350px, -320px, 0px);">
   <div class="centered-image spin-fast" style="
     background-image: url('./Introduction/img/bed.png');
     width: 400px;
@@ -40,7 +40,7 @@
   "></div>
 </div>
 
-<div class="object-wrapper" style="transform: translate3d(-500px, 320px, 0px);">
+<div class="object-wrapper whisper-hover" data-sound="dontBeScared" style="transform: translate3d(-500px, 320px, 0px);">
   <div class="centered-image spin-fast" style="
     background-image: url('./Introduction/img/greenclock.png');
     width: 500px;
@@ -194,5 +194,7 @@
 <audio id="curiositySound" src="./Introduction/mp3/curiosity.mp3" preload="auto"></audio>
 <audio id="creepyVoiceSound" src="./Introduction/mp3/goodbye.mp3" preload="auto"></audio>
 <audio id="backgroundSound" src="./Introduction/mp3/holebackgroundsound.mp3" preload="auto"></audio>
+<audio id="scrollWhisper" src="./Introduction/mp3/scroll.mp3" preload="auto"></audio>
+<audio id="dontBeScared" src="./Introduction/mp3/dontbescared.mp3" preload="auto"></audio>
 </body>
 </html>

@@ -4,8 +4,12 @@
     box-sizing: border-box;
   }
 
-  body{
-    cursor: url('./img/eyecursor.png') 16 16, auto;
+  body {
+    cursor: pointer; /* Hide cursor initially */
+  }
+  
+  body.cursor-active {
+    cursor: url('./img/eyecursor.png') 16 16, auto; /* Eye cursor after click */
   }
   html, body {
     height: 100%;
@@ -21,18 +25,17 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 60px;
-    height: 60px;
-    background: radial-gradient(circle, #fff, #888);
-    box-shadow: 0 0 20px #ccc, 0 0 40px #fff;
+    width: 120px; /* adjust size to match image dimensions */
+    height: 120px;
+    background-image: url('./img/eye-button.png'); /* 👁 Replace with your image path */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
     cursor: pointer;
     z-index: 1000;
-    animation: pulse 1s infinite;
-    text-align: center;
-    line-height: 60px;
-    font-size: 24px;
-    color: black;
+    animation: pulse 1.5s infinite;
   }
+  
 
   @keyframes pulse {
     0% { transform: translate(-50%, -50%) scale(1); }

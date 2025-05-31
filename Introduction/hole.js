@@ -20,8 +20,8 @@ window.addEventListener("DOMContentLoaded", () => {
     1000: { sound: background, played: false },
     1500: { sound: giggle, played: false },
     2000: { sound: curious, played: false },
-    3000: { sound: whisper, played: false },
-    7000: { sound: creepyVoice, played: false }
+    4000: { sound: whisper, played: false },
+    8000: { sound: creepyVoice, played: false }
   };
 
   
@@ -34,6 +34,30 @@ window.addEventListener("DOMContentLoaded", () => {
     circle.style.top = `${y}px`;
   }
 
+  // ************** sound ************ //
+  const soundMap = {
+    scrollWhisper: document.getElementById('scrollWhisper'),
+    dontBeScared: document.getElementById('dontBeScared')
+  };
+  
+  let whisperCooldown = false;
+  
+  document.querySelectorAll('.whisper-hover').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    if (!started || whisperCooldown) return;  // 👈 block until started is true
+
+    const soundId = el.dataset.sound;
+    const audio = soundMap[soundId];
+    if (audio) {
+      audio.currentTime = 0;
+      audio.play();
+      whisperCooldown = true;
+      setTimeout(() => whisperCooldown = false, 2000);
+    }
+  });
+});
+
+  
   // ****** cursor ****** //
   window.addEventListener('mousemove', (e) => {
     updateLightingWithMouse(e.clientY);
@@ -69,8 +93,9 @@ window.addEventListener("DOMContentLoaded", () => {
         setTimeout(() => {
           introOverlay.style.display = "none";
           circle.style.display = "none";
+          document.body.classList.add('cursor-active'); // 👈 this line is new
         }, 1500);
-      }, 3000);
+      }, 1000);
     }
   });
 
@@ -110,5 +135,5 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 
   // Extend scrollable height
-  document.body.style.height = '20000px';
+  document.body.style.height = '15000px';
 });
