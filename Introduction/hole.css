@@ -119,17 +119,12 @@
 
   
   .centered-image {
-    width: 600px;
-    height: 600px;
-    opacity: 0.9;
+    width: 800px;
+    height: 800px;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
     display: block;
     margin: 0 auto;
-    /*filter: drop-shadow(0 0 30px rgba(0, 0, 0, 0.95))
-    contrast(1.2)
-    brightness(1.1)
-    hue-rotate(10deg);*/
   }
   
