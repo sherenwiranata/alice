@@ -35,6 +35,8 @@
     z-index: 1000;
     animation: pulse 1.5s infinite;
   }
+
+  
   
 
   @keyframes pulse {
@@ -123,9 +125,6 @@
   .spin-medium { animation: spin-medium 20s linear infinite; }
   .spin-fast { animation: spin-fast 10s linear infinite; }
   
-  
-
-  
   .centered-image {
     width: 800px;
     height: 800px;
@@ -136,3 +135,7 @@
     margin: 0 auto;
   }
   
+  .magical-door:hover {
+    filter: brightness(1.5);
+    transition: filter 0.3s ease;
+  }

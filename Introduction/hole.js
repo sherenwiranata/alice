@@ -9,7 +9,14 @@ window.addEventListener("DOMContentLoaded", () => {
   const background = document.getElementById('backgroundSound');
   const layers = document.getElementById('layers');
   const objects = document.querySelectorAll('.object-wrapper');
-
+  const magicalDoor = document.querySelector('.magical-door');
+  const doorHoverSound = document.getElementById('doorClickSound');
+  magicalDoor.addEventListener('click', () => {
+    if (!started) return;
+    doorHoverSound.currentTime = 0;
+    doorHoverSound.play();
+  });
+  
   // State variables
   let audioUnlocked = false;
   let started = false;
@@ -137,3 +144,4 @@ window.addEventListener("DOMContentLoaded", () => {
   // Extend scrollable height
   document.body.style.height = '13000px';
 });
+
