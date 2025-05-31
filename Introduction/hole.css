@@ -77,21 +77,11 @@
   }
   
   .object-wrapper {
+    transform: translate(-50%, -50%) translateZ(var(--z-depth, 0px));
     position: absolute;
     top: 50%;
     left: 50%;
     transform-style: preserve-3d;
-  }
-
-  .centered-image {
-    width: 600px;
-    height: 600px;
-    opacity: 0.3;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    animation: spin 20s linear infinite;
-    filter: drop-shadow(0 0 30px rgba(0, 0, 0, 0.9));
   }
 
   #title {
@@ -106,27 +96,40 @@
     opacity: 0.9;
   }
 
-  @keyframes spin {
-    from {
-      transform: translate(-50%, -50%) rotate(0deg);
-    }
-    to {
-      transform: translate(-50%, -50%) rotate(360deg);
-    }
+  @keyframes spin-slow {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
   }
+  
+  @keyframes spin-medium {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+  }
+  
+  @keyframes spin-fast {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+  }
+  
+  .spin-slow { animation: spin-slow 40s linear infinite; }
+  .spin-medium { animation: spin-medium 20s linear infinite; }
+  .spin-fast { animation: spin-fast 10s linear infinite; }
+  
+  
+
   
   .centered-image {
     width: 600px;
     height: 600px;
-    opacity: 0.5;
-    animation: spin 20s linear infinite;
-  }
-
-  .centered-image {
-    width: 600px;
-    height: 600px;
-    opacity: 0.5;
-    animation: spin 20s linear infinite;
+    opacity: 0.9;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
     display: block;
     margin: 0 auto;
+    /*filter: drop-shadow(0 0 30px rgba(0, 0, 0, 0.95))
+    contrast(1.2)
+    brightness(1.1)
+    hue-rotate(10deg);*/
   }
+  
