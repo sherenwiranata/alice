@@ -135,5 +135,5 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 
   // Extend scrollable height
-  document.body.style.height = '15000px';
+  document.body.style.height = '13000px';
 });
