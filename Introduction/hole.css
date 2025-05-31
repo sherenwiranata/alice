@@ -4,12 +4,17 @@
     box-sizing: border-box;
   }
 
+  body{
+    cursor: url('./img/eyecursor.png') 16 16, auto;
+  }
   html, body {
     height: 100%;
     overflow-x: hidden;
     background: rgb(11, 3, 39);
     font-family: 'Cinzel', serif;
   }
+  
+  
 
   #startCircle {
     position: fixed;
