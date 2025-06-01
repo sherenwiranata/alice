@@ -51,8 +51,11 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: black;
-    z-index: 999; /* below startCircle (1000), above everything else */
+    background-image: url(./img/eyesbackground2.png);
+    background-size: cover;        /* <-- makes it responsive */
+    background-repeat: no-repeat;  /* <-- no tiling */
+    background-position: center;   /* <-- keeps eye centered */
+    z-index: 999;
     opacity: 1;
     transition: opacity 1.5s ease;
     pointer-events: none;

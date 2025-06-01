@@ -96,7 +96,7 @@ window.addEventListener("DOMContentLoaded", () => {
           circle.style.display = "none";
           document.body.classList.add('cursor-active'); // 👈 this line is new
         }, 1500);
-      }, 1000);
+      }, 2000);
     }
   });
 
