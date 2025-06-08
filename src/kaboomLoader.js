@@ -5,7 +5,7 @@ export const k = kaboom({
   width: 640 * scale,
   height: 360 * scale,
   scale,
-  letterbox: true,
+  letterbox: true, //so that its responsive
   global: false,
 });
 
@@ -79,6 +79,9 @@ k.loadSprite("background", "./assets/background.png", {
   sliceX: 13,
   sliceY: 25,
 });
+
+
+k.loadSprite("vignette", "./assets/img/vignette.png");
 
 k.loadSound("notify", "./assets/sounds/notify.mp3");
 k.loadSound("boom", "./assets/sounds/boom.wav");

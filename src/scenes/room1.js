@@ -22,7 +22,7 @@ export async function room1(
 
   k.camScale(4);
   k.camPos(170, 100);
-  k.setGravity(1000);
+  k.setGravity(600);
 
   const roomLayers = roomData.layers;
 
@@ -32,6 +32,25 @@ export async function room1(
   setMapColliders(k, map, colliders);
 
   const player = map.add(makePlayer(k));
+
+  const vignette = k.add([
+    k.sprite("vignette"),
+    k.fixed(),
+    k.scale(2), // or 2.5 depending on your desired size
+    k.z(1000),
+    k.opacity(0.85),
+    {
+      update() {
+        const playerScreenPos = k.toScreen(player.pos);
+        const scaledWidth = this.width * this.scale.x;
+        const scaledHeight = this.height * this.scale.y;
+        this.pos = playerScreenPos.sub(scaledWidth / 2, scaledHeight / 2);
+      },
+    },
+  ]);
+  
+  
+  
 
   setCameraControls(k, player, map, roomData);
 
@@ -101,3 +120,5 @@ export async function room1(
   healthBar.trigger("update");
   k.add(healthBar);
 }
+
+
