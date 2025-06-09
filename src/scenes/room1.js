@@ -21,7 +21,7 @@ export async function room1(
   setBackgroundColor(k, "#a2aed5");
   k.camScale(0.5);
   k.camPos(170, 100);
-  k.setGravity(600);
+  k.setGravity(100);
 
   const roomLayers = roomData.layers;
   console.log("roomLayers:", roomLayers);
@@ -59,7 +59,7 @@ player.setEvents?.();
   const vignette = k.add([
     k.sprite("vignette"),
     k.fixed(),
-    k.scale(1), // or 2.5 depending on your desired size
+    k.scale(2),
     k.z(1000),
     k.opacity(0.85),
     {

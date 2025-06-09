@@ -40,23 +40,23 @@ export function setMapColliders(k, map, colliders) {
         k.opacity(0),
         "boss-barrier",
         {
-          activate() {
-            k.tween(
-              this.opacity,
-              0.3,
-              1,
-              (val) => (this.opacity = val),
-              k.easings.linear
-            );
-
+          activate(roomData, map) {
+            const scale = k.camScale().x;
+            const screenHalfWidth = k.width() / 2 / scale;
+            const mapLeft = map.pos.x + screenHalfWidth;
+            const mapRight = map.pos.x + roomData.width * roomData.tilewidth - screenHalfWidth;
+        
+            const targetX = Math.max(mapLeft, Math.min(collider.properties[0].value, mapRight));
+        
             k.tween(
               k.camPos().x,
-              collider.properties[0].value,
+              targetX,
               1,
               (val) => k.camPos(val, k.camPos().y),
               k.easings.linear
             );
-          },
+          }, // ← this comma was missing
+        
           async deactivate(playerPosX) {
             k.tween(
               this.opacity,
@@ -74,7 +74,8 @@ export function setMapColliders(k, map, colliders) {
             );
             k.destroy(this);
           },
-        },
+        }
+        
       ]);
 
       bossBarrier.onCollide("player", async (player) => {
@@ -105,7 +106,7 @@ export function setMapColliders(k, map, colliders) {
 
         state.set(statePropsEnum.playerInBossFight, true);
 
-        bossBarrier.activate();
+        bossBarrier.activate(roomData, map);
         bossBarrier.use(k.body({ isStatic: true }));
       });
 
