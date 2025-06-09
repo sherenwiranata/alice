@@ -19,24 +19,47 @@ export async function room1(
   previousSceneData = { exitName: null }
 ) {
   setBackgroundColor(k, "#a2aed5");
-
-  k.camScale(4);
+  k.camScale(0.5);
   k.camPos(170, 100);
   k.setGravity(600);
 
   const roomLayers = roomData.layers;
+  console.log("roomLayers:", roomLayers);
 
-  const map = k.add([k.pos(0, 0), k.sprite("room1")]);
-  const colliders = roomLayers[4].objects;
+  const map = k.add([k.pos(0, 0)]);
 
-  setMapColliders(k, map, colliders);
+for (let y = 0; y < 4; y++) {
+  for (let x = 0; x < 4; x++) {
+    map.add([
+      k.sprite(`room1_${y}_${x}`),
+      k.pos(x * 1600, y * 1600),
+      k.z(-10), // draw behind everything
+    ]);
+  }
+}
 
-  const player = map.add(makePlayer(k));
+
+const colliderLayer = roomLayers.find(layer => layer.name === "colliders");
+
+if (!colliderLayer || !colliderLayer.objects) {
+  console.warn("Collider layer missing or invalid.");
+} else {
+  setMapColliders(k, map, colliderLayer.objects);
+}
+
+/********* player position */
+const player = map.add(makePlayer(k));
+player.pos = k.vec2(1266, 676); // EXACT match to green box
+player.setControls?.();
+player.enablePassthrough?.();
+player.setEvents?.();
+
+  /********* vignette ***********/
 
   const vignette = k.add([
     k.sprite("vignette"),
     k.fixed(),
-    k.scale(2), // or 2.5 depending on your desired size
+    k.scale(1), // or 2.5 depending on your desired size
     k.z(1000),
     k.opacity(0.85),
     {
@@ -48,8 +71,6 @@ export async function room1(
       },
     },
   ]);
-  
-  
   
 
   setCameraControls(k, player, map, roomData);
@@ -111,7 +132,7 @@ export async function room1(
 
   const cameras = roomLayers[6].objects;
 
-  setCameraZones(k, map, cameras);
+  setCameraZones(k, map, cameras, player);
 
   const exits = roomLayers[7].objects;
   setExitZones(k, map, exits, "room2");

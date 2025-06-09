@@ -2,9 +2,8 @@ import kaboom from "../lib/kaboom.mjs";
 
 export const scale = 2;
 export const k = kaboom({
-  width: 640 * scale,
-  height: 360 * scale,
-  scale,
+  width: 1280, // bigger canvas
+  height: 720, 
   letterbox: true, //so that its responsive
   global: false,
 });
@@ -88,5 +87,9 @@ k.loadSound("boom", "./assets/sounds/boom.wav");
 k.loadSound("health", "./assets/sounds/health.wav");
 k.loadSound("flamethrower", "./assets/sounds/flamethrower.mp3");
 
-k.loadSprite("room1", "./maps/room1.png");
+for (let y = 0; y < 4; y++) {
+  for (let x = 0; x < 4; x++) {
+    k.loadSprite(`room1_${y}_${x}`, `./maps/room1_${y}_${x}.png`);
+  }
+}
 k.loadSprite("room2", "./maps/room2.png");

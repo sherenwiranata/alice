@@ -129,46 +129,63 @@ export function setCameraControls(k, player, map, roomData) {
   k.onUpdate(() => {
     if (state.current().playerInBossFight) return;
 
-    if (map.pos.x + 160 > player.pos.x) {
-      k.camPos(map.pos.x + 160, k.camPos().y);
-      return;
-    }
+    const scale = k.camScale().x; // assume uniform scale (same x and y)
 
-    if (player.pos.x > map.pos.x + roomData.width * roomData.tilewidth - 160) {
-      k.camPos(
-        map.pos.x + roomData.width * roomData.tilewidth - 160,
-        k.camPos().y
-      );
-      return;
-    }
+    // Actual visible half screen size in world coordinates
+    const screenHalfWidth = k.width() / 2 / scale;
+    const screenHalfHeight = k.height() / 2 / scale;
 
-    k.camPos(player.pos.x, k.camPos().y);
+    const mapLeft = map.pos.x + screenHalfWidth;
+    const mapRight = map.pos.x + roomData.width * roomData.tilewidth - screenHalfWidth;
+
+    const mapTop = map.pos.y + screenHalfHeight;
+    const mapBottom = map.pos.y + roomData.height * roomData.tileheight - screenHalfHeight;
+
+    let targetX = player.pos.x;
+    let targetY = state.current().cameraLockedY ? k.camPos().y : player.pos.y;
+
+    // Clamp camera so it never shows outside the map
+    targetX = Math.max(mapLeft, Math.min(targetX, mapRight));
+    targetY = Math.max(mapTop, Math.min(targetY, mapBottom)); // optional: clamp Y
+
+    k.camPos(targetX, targetY);
   });
 }
 
+
 export function setCameraZones(k, map, cameras) {
   for (const camera of cameras) {
+    const targetY = camera.properties.find(p => p.name === "camPosY")?.value;
+    if (targetY == null) continue;
+
     const cameraZone = map.add([
       k.area({
         shape: new k.Rect(k.vec2(0), camera.width, camera.height),
         collisionIgnore: ["collider"],
       }),
       k.pos(camera.x, camera.y),
+      {
+        camTargetY: targetY,
+        alreadyTriggered: false, // prevent constant retweening
+        update() {
+          if (this.isOverlapping(state.current().player) && !this.alreadyTriggered) {
+            this.alreadyTriggered = true;
+            k.tween(
+              k.camPos().y,
+              this.camTargetY,
+              0.8,
+              (val) => k.camPos(k.camPos().x, val),
+              k.easings.linear
+            );
+          } else if (!this.isOverlapping(state.current().player)) {
+            this.alreadyTriggered = false;
+          }
+        }
+      },
     ]);
-
-    cameraZone.onCollide("player", () => {
-      if (k.camPos().x !== camera.properties[0].value) {
-        k.tween(
-          k.camPos().y,
-          camera.properties[0].value,
-          0.8,
-          (val) => k.camPos(k.camPos().x, val),
-          k.easings.linear
-        );
-      }
-    });
   }
 }
+
 
 export function setExitZones(k, map, exits, destinationName) {
   for (const exit of exits) {
