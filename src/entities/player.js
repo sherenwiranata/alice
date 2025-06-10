@@ -6,16 +6,16 @@ export function makePlayer(k) {
   return k.make([
     k.pos(),
     k.sprite("player"),
-    k.scale(0.8),
-    k.area({ shape: new k.Rect(k.vec2(-8, 100), 50, 150) }), // << centered around the feet
+    k.scale(0.65),
+    k.area({ shape: new k.Rect(k.vec2(-12, 60), 150, 250) }), // << centered around the feet
     k.anchor("center"),
-    k.body({ mass: 80, jumpForce: 800 }),
+    k.body({ mass: 80, jumpForce: 950 }),
     k.doubleJump(state.current().isDoubleJumpUnlocked ? 2 : 1),
     k.opacity(),
     k.health(state.current().playerHp),
     "player",
     {
-      speed: 250,
+      speed: 300,
       isAttacking: false,
       setPosition(x, y) {
         this.pos.x = x;

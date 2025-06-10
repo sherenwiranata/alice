@@ -19,9 +19,9 @@ export async function room1(
   previousSceneData = { exitName: null }
 ) {
   setBackgroundColor(k, "#a2aed5");
-  k.camScale(0.5);
+  k.camScale(0.6);
   k.camPos(170, 100);
-  k.setGravity(700);
+  k.setGravity(1000);
 
   const roomLayers = roomData.layers;
   console.log("roomLayers:", roomLayers);
@@ -47,9 +47,11 @@ if (!colliderLayer || !colliderLayer.objects) {
   setMapColliders(k, map, colliderLayer.objects);
 }
 
+
+
 /********* player position */
 const player = map.add(makePlayer(k));
-player.pos = k.vec2(1266, 676); // EXACT match to green box
+player.pos = k.vec2(326, 765); // EXACT match to green box
 player.setControls?.();
 player.enablePassthrough?.();
 player.setEvents?.();
