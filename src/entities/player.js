@@ -6,15 +6,16 @@ export function makePlayer(k) {
   return k.make([
     k.pos(),
     k.sprite("player"),
-    k.area({ shape: new k.Rect(k.vec2(0, 18), 12, 12) }),
+    k.scale(0.8),
+    k.area({ shape: new k.Rect(k.vec2(-8, 100), 50, 150) }), // << centered around the feet
     k.anchor("center"),
-    k.body({ mass: 100, jumpForce: 320 }),
+    k.body({ mass: 80, jumpForce: 800 }),
     k.doubleJump(state.current().isDoubleJumpUnlocked ? 2 : 1),
     k.opacity(),
     k.health(state.current().playerHp),
     "player",
     {
-      speed: 150,
+      speed: 250,
       isAttacking: false,
       setPosition(x, y) {
         this.pos.x = x;
@@ -45,7 +46,7 @@ export function makePlayer(k) {
               this.isAttacking = true;
               this.add([
                 k.pos(this.flipX ? -25 : 0, 10),
-                k.area({ shape: new k.Rect(k.vec2(0), 25, 10) }),
+                k.area({ shape: new k.Rect(k.vec2(0, 10), 256, 180) }),
                 "sword-hitbox",
               ]);
               this.play("attack");
