@@ -1,10 +1,12 @@
 export function makeNotificationBox(k, subtitleContent) {
+  const groupCenterY = k.center().y;
+
   const title1 = k.add([
     k.text("WHAT MADE", {
       font: "glyphmesss",
       size: 64,
     }),
-    k.pos(k.center().x, k.center().y - 100),
+    k.pos(k.center().x, groupCenterY - 70), // top line
     k.anchor("center"),
     k.color(k.Color.fromHex("#FFDF78")),
   ]);
@@ -14,7 +16,7 @@ export function makeNotificationBox(k, subtitleContent) {
       font: "glyphmesss",
       size: 64,
     }),
-    k.pos(k.center().x, k.center().y - 40),
+    k.pos(k.center().x, groupCenterY), // middle line
     k.anchor("center"),
     k.color(k.Color.fromHex("#FFDF78")),
   ]);
@@ -27,7 +29,7 @@ export function makeNotificationBox(k, subtitleContent) {
       width: 500,
       lineSpacing: 8,
     }),
-    k.pos(k.center().x, k.center().y + 40),
+    k.pos(k.center().x, groupCenterY + 70), // bottom text
     k.anchor("center"),
     k.color(k.Color.fromHex("#FFDF78")),
   ]);
