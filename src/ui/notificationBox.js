@@ -6,7 +6,7 @@ export function makeNotificationBox(k, subtitleContent) {
     }),
     k.pos(k.center().x, k.center().y - 100),
     k.anchor("center"),
-    k.color(k.Color.fromHex("#eacfba")),
+    k.color(k.Color.fromHex("#FFDF78")),
   ]);
 
   const title2 = k.add([
@@ -16,7 +16,7 @@ export function makeNotificationBox(k, subtitleContent) {
     }),
     k.pos(k.center().x, k.center().y - 40),
     k.anchor("center"),
-    k.color(k.Color.fromHex("#eacfba")),
+    k.color(k.Color.fromHex("#FFDF78")),
   ]);
 
   const subtitle = k.add([
@@ -29,7 +29,7 @@ export function makeNotificationBox(k, subtitleContent) {
     }),
     k.pos(k.center().x, k.center().y + 40),
     k.anchor("center"),
-    k.color(k.Color.fromHex("#eacfba")),
+    k.color(k.Color.fromHex("#FFDF78")),
   ]);
 
   return [title1, title2, subtitle];
