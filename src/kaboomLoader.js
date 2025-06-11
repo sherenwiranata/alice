@@ -6,6 +6,7 @@ export const k = kaboom({
   height: 720, 
   letterbox: true, //so that its responsive
   global: false,
+  noLoadScreen: true, 
 });
 
 k.loadFont("glyphmesss", "./assets/CinzelDecorative-Regular.ttf");

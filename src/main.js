@@ -16,7 +16,7 @@ async function main() {
   });
 
   k.scene("final-exit", () => {
-    setBackgroundColor(k, "#20214a");
+    setBackgroundColor(k, "#0B0327");
     k.add(
       makeNotificationBox(
         k,
@@ -27,20 +27,18 @@ async function main() {
 }
 
 k.scene("intro", () => {
-  setBackgroundColor(k, "#20214a");
-  k.add(
-    makeNotificationBox(
-      k,
-      "Escape the factory!\nUse arrow keys to move, x to jump, z to attack.\nPress Enter to start!"
-    )
+  setBackgroundColor(k, "#0B0327");
+  makeNotificationBox(
+    k,
+    "USE ARROW KEYS TO MOVE,\nX TO JUMP, Z TO ATTACK.\nPRESS ENTER TO START!"
   );
   k.onKeyPress("enter", () => {
-    // makes audio will be enabled before the game starts
     const context = new AudioContext();
     context.resume();
     k.go("room1", { exitName: null });
   });
 });
+
 
 k.go("intro");
 

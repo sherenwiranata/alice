@@ -1,26 +1,36 @@
-export function makeNotificationBox(k, content) {
-  const container = k.make([
-    k.rect(480, 100),
-    k.color(k.Color.fromHex("#20214a")),
-    k.fixed(),
-    k.pos(k.center()),
-    k.area(),
-    k.anchor("center"),
-    {
-      close() {
-        k.destroy(this);
-      },
-    },
-  ]);
-  container.add([
-    k.text(content, {
+export function makeNotificationBox(k, subtitleContent) {
+  const title1 = k.add([
+    k.text("WHAT MADE", {
       font: "glyphmesss",
-      size: 32,
+      size: 64,
     }),
-    k.color(k.Color.fromHex("#eacfba")),
-    k.area(),
+    k.pos(k.center().x, k.center().y - 100),
     k.anchor("center"),
+    k.color(k.Color.fromHex("#eacfba")),
   ]);
 
-  return container;
+  const title2 = k.add([
+    k.text("ALICE BROKE?", {
+      font: "glyphmesss",
+      size: 64,
+    }),
+    k.pos(k.center().x, k.center().y - 40),
+    k.anchor("center"),
+    k.color(k.Color.fromHex("#eacfba")),
+  ]);
+
+  const subtitle = k.add([
+    k.text(subtitleContent, {
+      font: "glyphmesss",
+      size: 18,
+      align: "center",
+      width: 500,
+      lineSpacing: 8,
+    }),
+    k.pos(k.center().x, k.center().y + 40),
+    k.anchor("center"),
+    k.color(k.Color.fromHex("#eacfba")),
+  ]);
+
+  return [title1, title2, subtitle];
 }
